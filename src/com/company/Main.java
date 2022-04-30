@@ -42,7 +42,7 @@ public class Main {
         System.out.println("Array before sort: " + Arrays.toString(myStringArray));
         SortToString(myStringArray, vowel);
     }
-
+    //поросто для чисел
     public static void Sort(int [] myArray) {
         int gap = myArray.length;
 
@@ -69,13 +69,13 @@ public class Main {
         System.out.println("-------------------------------------------------");
     }
     public static void SortToString(String[] myStringArray, String vowel){
-
+        //поиск гласных и их индексов
         for (int i = 0; i < myStringArray.length; i++) {
             for (int j = 0; j < myStringArray[i].length(); j++) {
                 int index = vowel.indexOf(myStringArray[i].charAt(j));
             }
         }
-
+        // массив с колвом индексов
         int[] count = new int[myStringArray.length];
 
         for (int i = 0; i < myStringArray.length; i++) {
@@ -86,7 +86,7 @@ public class Main {
                 }
             }
         }
-
+        //сортировка расческой
         int gap = myStringArray.length;
         boolean isSorted = false;
         while(!isSorted || gap != 1){
