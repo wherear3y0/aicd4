@@ -22,17 +22,23 @@ public class Main {
         myArray[8] = 9;
         myArray[9] = 6;
 
-        String str = "Suggestion for the implementation of my assignment about programming";
+       String str = "\"Suggestion for the implementation of my assignment about programming\"";
+
+        String[] stroke = {"Suggestion for the implementation of my assignment about programming", "I wanted a beautiful fate, like in the Roots video by Eric Badu Storytelling on the go",
+                "I MC scourged and lynched everyone who rested on their laurels And lunched with their mediocre texts",
+                "If you resist the surrounding whore It's not with a sad face"};
+
+
         str = str.toLowerCase();// create stroke with lowercase words
         String[] words = str.split(" "); //split the string around the spaces and put it directly into the array
-        String vowel = "aeiouy";// string of vowels
+       // string of vowels
 
         System.out.println("Array with numbers for example");
         System.out.println("Array before sort: " + Arrays.toString(myArray));
         Sort(myArray);
 
         System.out.println("Stroke before sort: " + str);
-        SortToString(words, vowel);
+        SortToString(words);
     }
     //поросто для чисел
     public static void Sort(int [] myArray) {
@@ -60,27 +66,10 @@ public class Main {
         System.out.println("Array after sort: " + Arrays.toString(myArray));
         System.out.println("-------------------------------------------------");
     }
-    public static void SortToString(String[] words, String vowel){
-        //поиск гласных и их индексов
-        for (int i = 0; i < words.length; i++) {
-            for (int j = 0; j < words[i].length(); j++) {
-                int index = vowel.indexOf(words[i].charAt(j));
-                System.out.print(index + " ");
-            }
-        }
-        int[] count = new int[words.length];//array with amount our words and they index
-
-        for (int i = 0; i < words.length; i++) {
-            for (int j = 0; j < words[i].length(); j++) {
-                int index = vowel.indexOf(words[i].charAt(j));
-                if (index > 0) {
-                    count[i] = count[i] + 1;
-                }
-            }
-        }
+    public static void SortToString(String[] words){
 
         //comb sort
-        int gap = count.length;
+        int gap = words.length;
 
         boolean isSorted = false;
         while(!isSorted || gap != 1){
@@ -93,8 +82,8 @@ public class Main {
 
             isSorted = true;
             for(int i = gap; i < words.length; i++){
-                if(words[i - gap]) > words[i] ){
-                    int tmp = words[i);
+                if(FindVowel(words[i - gap]) < FindVowel(words[i])){
+                    String tmp = words[i];
                     words[i] = words[i - gap];
                     words[i - gap] = tmp;
                     isSorted = false;
@@ -103,13 +92,16 @@ public class Main {
         }
         System.out.println(Arrays.toString(words));
     }
-    public static void WordIndex(String[] myStringArray, String vowel){
-
-        for (int i = 0; i < myStringArray.length; i++) {
-            for (int j = 0; j < myStringArray[i].length(); j++) {
-                int index = vowel.indexOf(myStringArray[i].charAt(j));
+    public static int FindVowel(String word){
+        int k = 0;
+        String vowel = "aeiouy";
+        for(int i = 0; i < word.length(); i++){
+            for(int j = 0; j < vowel.length(); j++){
+                if(word.charAt(i) == vowel.charAt(j)){
+                    k++;
+                }
             }
         }
+        return k;
     }
-
 }
